@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Registration Form Example</title>
+   <meta charset="utf-8"/>
+   <style>
+
+      body {
+         font-family: verdana;
+         font-size: 12px;
+         background-color: #EDE7BB;
+      }
+
+      #wrapper {
+         width: 400px;
+         margin: 0 auto;
+      }
+
+      form {
+      margin: 0 auto;
+      width: 600px;
+      }
+
+      select {
+         background-color: white;
+         height: 2em;
+      }
+
+      p {
+         text-align: center;
+      }
+
+      .heading {
+         display: block;
+         margin: 0 auto;
+         height: 3em;
+         background-color: #B55A1D;
+         line-height: 3em;
+         color: white;
+         font-weight: 700;
+         border-radius: 1em;
+      }
+
+      .req{
+         font-size: 8px;
+         line-height: 1em;
+         color: #ED0909;
+      }
+
+      .redBorder {
+         background-color: rgba(255,0,0,.1);
+      }
+
+      .container {
+         width: 200px;
+         margin-left: 20%;
+      }
+
+      .container input, .container select {
+         margin: .5em 0;
+      }
+
+      button {
+         margin: 2em auto 0 auto;
+         width: 120px;
+         height: 2em;
+         cursor: pointer;
+      }
+
+      .problem {
+         background-color: #2D93B5;
+         color: rgba(255,255,255,.9);
+         float:left;
+         width: 650px;
+         padding: 1em 2em;
+         font-weight: normal;
+         font-size: 14px;
+      }
+
+      .problem h4 {
+         color: white;
+      }
+
+      .problem p {
+         text-align: justify;
+         text-indent: 2em;
+      }
+
+      strong {
+         color: white;
+      }
+
+      #wrapper {
+         font-size: 14px;
+         float: left;
+         width: 450px;
+         margin-left: 20px;
+      }
+
+
+      input {
+         height: 2em;
+         font-size: 14px;
+         padding-left: 4px;
+         border-radius: 4px;
+      }
+
+      i {
+         font-weight: normal;
+      }
+
+      #successWrap {
+         width: 100%;
+         height: 100%;
+         background-color: rgba(0,0,0,.5);
+         position: absolute;
+         top: 0;
+         left: 0;
+         visibility: hidden;
+      }
+
+      #successMessage {
+         width: 50%;
+         height: 50%;
+         position: absolute;
+         top: 25%;
+         left: 25%;
+         background-color: white;
+         visibility: hidden;
+      }
+
+   </style>
+
+   <script type="text/javascript">
+
+      function validateForm() {
+
+         console.log('Blablabla, ovo ce da se vidi u konzoli!')
+
+
+
+         var allSpanReq = document.getElementsByClassName("req");
+         var allInputReq = document.getElementsByClassName("required");
+         var sum = 0;
+         var addClassName = "redBorder"
+
+         var digitInName = 0
+
+
+         var firstName = allInputReq[0].value
+         var lastName = allInputReq[1].value
+         var username = allInputReq[2].value
+         var pass = allInputReq[3].value
+         var passCopy = allInputReq[4].value
+
+
+         for (i = 0; i < allInputReq.length; i++){
+
+            var element = allInputReq[i];
+            if (element.value == "") {
+               sum += 1;
+               element.className += " " + addClassName;
+               }
+            else {
+               element.classList.remove(addClassName);
+            }
+         }
+
+         if(allInputReq[2].value.length < 9){
+            sum += 1;
+            allInputReq[2].className += " " + addClassName;
+         }
+            else {
+               allInputReq[2].classList.remove(addClassName);
+            }
+
+         if(allInputReq[3].value.length <= 9){
+            sum += 1;
+            allInputReq[3].className += " " + addClassName;
+         }
+            else {
+               allInputReq[3].classList.remove(addClassName);
+            }
+
+         for (i = 0; i < firstName.length; i++){
+            if('0' <= firstName[i] && firstName[i]<= '9'){
+               digitInName += 1;
+            }
+         }
+         if (digitInName > 0){
+            sum += 1;
+            allInputReq[0].className += " " + addClassName;
+         }
+         digitInName = 0;
+
+         for (i = 0; i < lastName.length; i++){
+            if('0' <= lastName[i] && lastName[i]<= '9'){
+               digitInName += 1;
+            }
+         }
+         if (digitInName > 0){
+            sum += 1;
+            allInputReq[1].className += " " + addClassName;
+         }
+         digitInName = 0;
+
+         var digitInPass = 0
+         for(z=0; z<pass.length; z++){
+            if('0' <= pass[z] && pass[z] <= '9'){
+               digitInPass += 1;
+            }
+         }
+
+         if(digitInPass < 2){
+            sum += 1;
+            allInputReq[3].className += " " + addClassName;
+         }
+            else {
+               allInputReq[3].classList.remove(addClassName);
+            }
+         digitInPass = 0;
+
+         if (pass !== passCopy){
+            allInputReq[3].className += " " + addClassName
+            allInputReq[4].className += " " + addClassName
+            sum += 2;
+         }
+
+         if (sum > 0){
+            sum = 0;
+            return false;
+         }
+         else {
+            sum = 0;
+            return true;
+         }
+      }
+
+   </script>
+
+</head>
+<body>
+
+   <div id="successWrap">
+      <div id="successMessage"></div>
+   </div>
+
+   <article class="problem">
+      <h4>Opis problema:</h4>
+      <p>
+         Data je jednostavna <strong>registraciona</strong> forma. Na samoj formi su data već neka ograničenja (zahtevi), tako da ovde nije potrebno ponavljati, ali evo kratke specifikacije.
+      </p>
+      <p>
+         <ul>
+            <li>Obavezna polja su označena sa <i><sup>*</sup>Required</i></li>
+            <li><i><sup>*</sup>Required</i> tekst mora da ima boju: <i>#FF0000</i></li>
+            <li><strong>Jedino</strong> polje koje nije obavezno je polje za pol. Sva druga polja jesu obavezna!</li>
+            <li>Polja <i>Password</i> i <i>Repeat Password</i> moraju da imaju <strong>identične</strong> unose kako bi korisnik uspeo da se registruje.</li>
+            <li>Svako polje koje nije popunjeno po specifikaciji, a korisnik klikne na <i>Log In</i>, mora da se oboji u crvenu boju - <i>background-color</i> sa vrednošću: <i>rgba(255,0,0,0.1)</i></li>
+            <li>Polja moraju imati plejsholder tekst koji je jasno definisan (to je onaj sivi tekst u samom polju za popunjavanje):
+               <ol>
+                  <li><i>First Name</i></li>
+                  <li><i>Last Name</i></li>
+                  <li><i>Username</i></li>
+                  <li><i>Choose Gender</i></li>
+                  <li><i>Password</i></li>
+                  <li><i>Repeat Password</i></li>
+               </ol>
+            </li>
+            <li>Polje za pol je u vidu <i>dropdown</i> menija, i imaće ponuđene dve opcije:
+               <ol>
+                  <li><i>Male</i></li>
+                  <li><i>Female</i></li>
+               </ol>
+            </li>
+            <li>Korisnik ne može da se registruje ukoliko <strong>svi</strong> uslovi specifikacije nisu ispunjeni</li>
+            <li>Ukoliko korisnik ispuni <strong>sve</strong> uslove koji su zadati specifikacijom koja je navedena iznad same registracione forme, moći će da se registruje. U tom slučaju klik na <i>Log In</i> dugme će refrešovati stranu.</li>
+         </ul>
+      </p>
+      <p>
+         Srećno :)
+      </p>
+   </article>
+
+   <div id="wrapper">
+      <p class="heading">Please enter username and password to Log In</p>
+      <article>
+         <h4>Guide to registration:</h4>
+         <ul>
+            <li>Names can't contain numbers or special characters</li>
+            <li>Username should be at least 9 characters long</li>
+            <li>Password should be at least 10 characters long annd should contain:</li>
+            <ol>
+               <li>At least 1 capital letter</li>
+               <li>At least 1 small letter</li>
+               <li>At least 1 special character (e.g. $, ^, # etc.)</li>
+               <li>At least 2 numbers</li>
+            </ol>
+         </ul>
+      </article>
+      <form id="registration" name="regform" acition="/" onsubmit="return validateForm();">
+      <div class="container">
+            <input placeholder="First" name="fname" class="required"><span class="req"><sup> *</sup>Required</span>
+            <input placeholder="Last Name" name="lname" class="required"><span class="req"><sup> *</sup>Required</span>
+            <input placeholder="Username" name="uname" class="required">
+            <select name="gender" form="registration">
+               <option selected>CHoose GENder</option>
+               <option value="Male">Female</option>
+               <option value="Female"></option>
+            </select>
+            <input placeholder="Password" name="pass" class="required" type="password"><span class="req"><sup> *</sup>Required</span>
+            <input placeholder="Repeat password" name="repeatpass" class="required" type="password"><span class="req"><sup> *</sup>Required</span>
+         <button type="submit">Log In</button>
+         </div> 
+      </form>
+   </div>
+
+</body>
+</html>
