@@ -137,7 +137,7 @@
 
          console.log('Blablabla, ovo ce da se vidi u konzoli!')
 
-         document.getElementById('form').preventDefault();
+
 
          var allSpanReq = document.getElementsByClassName("req");
          var allInputReq = document.getElementsByClassName("required");
@@ -232,11 +232,6 @@
          }
          else {
             sum = 0;
-            const node = document.createElement('li');
-            const textNode = document.createTextNode('Successful login!');
-            node.appendChild(textNode);
-            document.getElementById('form').appendChild(node);
-
             return true;
          }
       }
@@ -303,7 +298,7 @@
             </ol>
          </ul>
       </article>
-      <form id="registration" name="regform" acition="/" onsubmit="validateForm();">
+      <form id="registration" name="regform" acition="/" onsubmit="return validateForm();">
       <div class="container">
             <input placeholder="First" name="fname" class="required"><span class="req"><sup> *</sup>Required</span>
             <input placeholder="Last Name" name="lname" class="required"><span class="req"><sup> *</sup>Required</span>
@@ -315,7 +310,7 @@
             </select>
             <input placeholder="Password" name="pass" class="required" type="password"><span class="req"><sup> *</sup>Required</span>
             <input placeholder="Repeat password" name="repeatpass" class="required" type="password"><span class="req"><sup> *</sup>Required</span>
-         <button type="submit" id="submitBtn">Log In</button>
+         <button type="submit">Log In</button>
          </div> 
       </form>
    </div>
